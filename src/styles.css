@@ -1,0 +1,13 @@
+body {
+    font-family: Roboto, sans-serif;
+    background-color: #ddd;
+}
+
+.product-img {
+    width: 150px;
+    border-radius: 50%;
+}
+.product-img-big {
+    width: 200px;
+    border-radius: 50%;
+}
