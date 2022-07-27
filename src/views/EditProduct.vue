@@ -15,7 +15,7 @@
             <input required type="text" v-model="product.name" class="form-control" placeholder="Nazwa">
           </div>
           <div class="mb-2">
-            <input required type="text" v-model="product.price" class="form-control" placeholder="Cena">
+            <input required type="number" v-model="product.price" class="form-control" placeholder="Cena">
           </div>
           <div class="mb-2">
             <input required type="text" v-model="product.code" class="form-control" placeholder="Kod produktu">

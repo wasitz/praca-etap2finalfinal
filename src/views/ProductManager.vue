@@ -45,7 +45,7 @@
                             <div class="col-sm-7">
                                 <ul class="list-group">
                                     <li class="list-group-item">Nazwa: <span class="fw-bold">{{ product.name }}</span></li>
-                                    <li class="list-group-item">Cena: <span class="fw-bold">{{ product.price }}</span></li>
+                                    <li class="list-group-item">Cena: <span class="fw-bold">{{ product.price }}zł</span></li>
                                     <li class="list-group-item">Kod: <span class="fw-bold">{{ product.code }}</span></li>
                                 </ul>
                             </div>
@@ -92,7 +92,7 @@ import Spinner from '@/components/Spinner.vue'
 
 export default {
     name: "ProductManager",
-    componnet: { Spinner },
+    components: { Spinner },
     data: function() {
         return {
             loading: false,

@@ -5,13 +5,19 @@ import AddProduct from '../views/AddProduct.vue'
 import EditProduct from '../views/EditProduct.vue'
 import ViewProduct from '../views/ViewProduct.vue'
 import PageNotFound from '../views/PageNotFound.vue'
+import LoginPage from '../views/LoginPage.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    redirect: "/products",
+    redirect: "/loginpage",
     component: HomeView
+  },
+  {
+    path: '/loginpage',
+    name: 'LoginPage',
+    component: LoginPage
   },
   {
     path: '/products',

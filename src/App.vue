@@ -1,25 +1,7 @@
 <template>
 <NavBar />
 
-<!-- Logowanie -->
-<main class="form-signin w-100 m-auto" v-if="logIn" >
-  <form @submit.prevent="updateLogin()">
-    <h1 class="h3 mb-3 fw-normal">Logowanie</h1>
-
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" required>
-      <label for="floatingInput">Email</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" required>
-      <label for="floatingPassword">Hasło</label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary">Zaloguj się</button>
-  </form>
-</main>
-
-
-  <router-view v-else/>
+  <router-view />
 </template>
 
 <script>

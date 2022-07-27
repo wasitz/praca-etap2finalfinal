@@ -3,7 +3,7 @@
     {
       "id": "vHgnHsaZt2",
       "name": "iE",
-      "price": "10zł",
+      "price": 10,
       "code": "2170",
       "photo": "https://www.multiprojekt.pl/wp-content/uploads/elementor/thumbs/Oferta_Weintek_serie_600x600_iE-1-parwjmcsntxm868di70rthl1yx0p10gnhl98phxvog.jpg",
       "groupId": "1",
@@ -12,7 +12,7 @@
     {
       "id": "B9LBx9hHsH",
       "name": "eMT3070B",
-      "price": "100zł",
+      "price": 100,
       "code": "1561",
       "photo": "https://www.multiprojekt.pl/wp-content/uploads/elementor/thumbs/Oferta_Weintek_serie_600x600_eMT-1-parwox61776tp0j7jzi1dnfmk4w7fki5vtot4o2ylc.jpg",
       "groupId": "1",
@@ -21,7 +21,7 @@
     {
       "id": "xiQ8cphjMa",
       "name": "iP",
-      "price": "1000zł",
+      "price": 1000,
       "code": "4895",
       "photo": "https://www.multiprojekt.pl/wp-content/uploads/elementor/thumbs/Oferta_Weintek_serie_600x600_iP-1-parx2cb2s1k7gl1f6sc9z9ijw6qvbzs7290dsw6lr4.jpg",
       "groupId": "1",
@@ -30,7 +30,7 @@
     {
       "id": "IUILpAPtAI",
       "name": "mTV-100",
-      "price": "100000zł",
+      "price": 100000,
       "code": "8849",
       "photo": "https://www.multiprojekt.pl/wp-content/uploads/elementor/thumbs/Oferta_Weintek_serie_600x600_mTV-1-parxhtpdcsr8pcjrrza1juuw5ofj4i90uvvbdz859c.jpg",
       "groupId": "2",

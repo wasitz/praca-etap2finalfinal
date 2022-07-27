@@ -36,7 +36,7 @@
         <div class="col-md-6">
           <ul class="list-group">
             <li class="list-group-item">Nazwa: <span class="fw-bold">{{product.name}}</span></li>
-            <li class="list-group-item">Cena: <span class="fw-bold">{{product.price}}</span></li>
+            <li class="list-group-item">Cena: <span class="fw-bold">{{product.price}}zł</span></li>
             <li class="list-group-item">Kod: <span class="fw-bold">{{product.code}}</span></li>
             <li class="list-group-item">Grupa: <span class="fw-bold">{{group.name}}</span></li>
             <li class="list-group-item">Opis: <span class="fw-bold">{{product.desc}}</span></li>
@@ -46,7 +46,7 @@
 
       <div class="row mt-3">
         <div class="col">
-          <router-link to="/" class="btn btn-primary"><i class="fa fa-arrow-alt-circle-left"></i> Powrót</router-link>
+          <router-link to="/products" class="btn btn-primary"><i class="fa fa-arrow-alt-circle-left"></i> Powrót</router-link>
         </div>
       </div>
     </div>
