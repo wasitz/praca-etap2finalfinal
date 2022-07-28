@@ -6,6 +6,7 @@ import EditProduct from '../views/EditProduct.vue'
 import ViewProduct from '../views/ViewProduct.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import LoginPage from '../views/LoginPage.vue'
+import SingleProduct from '../views/SingleProduct.vue'
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: '/products/view/:productId',
     name: 'ViewProduct',
     component: ViewProduct
+  },
+  {
+    path: '/products/singleproduct',
+    name: 'SingleProduct',
+    component: SingleProduct
   },
   {
     path: '/:pathMatch(.*)',

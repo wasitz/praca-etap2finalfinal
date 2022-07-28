@@ -3,4 +3,3 @@ module.exports = defineConfig({
   transpileDependencies: true
 })
 
-this.$cookies.config('7d');

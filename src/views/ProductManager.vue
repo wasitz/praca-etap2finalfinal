@@ -32,40 +32,10 @@
 </div>
 </div>
 
-    <div class="container mt-3" v-if="products.length > 0">
-        <div class="row">
-            <div class="col-md-6" v-for="product of products" :key="product">
-                <div class="card my-2 shadow-lg" >
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-sm-4">
-                                <img :src="product.photo" alt="" class="product-img">
+<SingleProduct />
 
-                            </div>
-                            <div class="col-sm-7">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Nazwa: <span class="fw-bold">{{ product.name }}</span></li>
-                                    <li class="list-group-item">Cena: <span class="fw-bold">{{ product.price }}zł</span></li>
-                                    <li class="list-group-item">Kod: <span class="fw-bold">{{ product.code }}</span></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-1 d-flex flex-column justify-content-center align-items-center">
-                                <router-link :to="`/products/view/${product.id}`" class="btn btn-secondary my-1"><i class="fa fa-eye"></i></router-link>
-                                <router-link :to="`/products/edit/${product.id}`" class="btn btn-primary my-1"><i class="fa fa-pen"></i></router-link>
-                                <button class="btn btn-danger my-1" @click="clickDeleteProduct(product.id)">
-                                    <i class="fa fa-trash"></i>
-                                </button>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Modal - próbowałem dodać jako potwierdzenie usuwania pozycji, ale nie działał mi "Usuń" tutaj, pewnie coś z product.id?  -->
+<!-- Modal - próbowałem dodać jako potwierdzenie usuwania pozycji, ale nie działał mi "Usuń" tutaj, pewnie coś z product.id?  -->
     <!-- <div class="modal fade" id="modalDanger" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -88,11 +58,13 @@
 <script>
 import { ContactService } from '@/services/ContactService';
 import Spinner from '@/components/Spinner.vue'
+import SingleProduct from './SingleProduct.vue'
+// tutaj jest podkreślony błąd, ale jak usunę tę linijkę to produkty przestają działać?
 
 
 export default {
     name: "ProductManager",
-    components: { Spinner },
+    components: { Spinner, SingleProduct },
     data: function() {
         return {
             loading: false,

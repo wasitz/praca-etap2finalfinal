@@ -1,35 +1,30 @@
 <template>
   <!-- Logowanie -->
-<div class="row ">
+<div class="row">
   <div class="col">
-    <main class="form-signin col-sm-4 m-auto">
-      <form @submit.prevent="login()">
+    <main class="form-signin col-sm-3 m-auto">
+      <form @click.prevent>
         <h1 class="h3 mb-3 fw-normal">Logowanie</h1>
 
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput">
-          <label for="floatingInput">Email</label>
+          <input type="email" v-model="email" class="form-control" id="floatingInput" required>
+          <label for="floatingInput" required>Email</label>
+          
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword">
-          <label for="floatingPassword">Hasło</label>
+          <input type="password" v-model="password" class="form-control" id="floatingPassword" required>
+          <label for="floatingPassword" required>Hasło</label>
         </div>
-        <button type="sumbit">Zaloguj się Button</button>
-        <router-link to="/products" class="btn btn-primary">Zaloguj się</router-link>
+        <button @click="checkPassword()" class="btn btn-primary">Zaloguj się Button</button>
       </form>
-    </main>
+          email: a@a, hasło: aaa
 
-          <div class="row mt-3">
-            <div class="col">
-              <router-link to="/products" class="btn btn-primary"><i class="fa fa-arrow-alt-circle-left"></i> Powrót</router-link>
-            </div>
-          </div>
+    </main>
   </div>
 </div>
 </template>
 
 <script>
-// import authAxios from '../auth-axios';
 
 import router from "../router"    
 import axios from "axios"    
@@ -38,35 +33,28 @@ import axios from "axios"
         name: "Login",
         data() {
           return {
-            // this.$cookies.config('7d');
             email: "",
-            password: ""
+            password: "",
+            loggedIn: false,
+  
           }
         },
-        methods: {    
-            login: (e) => {    
-                this.$cookies.set("email");
-                e.preventDefault()    
-                let email = "test@test"   
-                let password = "pass"    
-                let login = () => {    
-                    let data = {    
-                        email: email,    
-                        password: password    
-                    }    
-                    axios.post("/srv/login", data)    
-                        .then((response) => {
-                            router.push("/products")    
-                        })    
-                        .catch((error) => {    
-                            console.log(error, "Logowanie nie powiodło się")    
-                        })    
-                }    
-                login()    
-            }    
-        }    
+        methods: {
+          checkPassword: function () {
+            if (this.password === 'aaa' && this.email === 'a@a'){
+              this.loggedIn = true;
+              console.log('loggedIn');
+              
+            } if (this.loggedIn) {
+              this.$router.push('/products');
+            } else {
+              alert('Błąd logowania');
+            }
+          }
+    }
     }
 </script>
+
 
 <style>
 
