@@ -32,7 +32,7 @@
 </div>
 </div>
 
-<SingleProduct />
+<ProductList />
 
 
 <!-- Modal - próbowałem dodać jako potwierdzenie usuwania pozycji, ale nie działał mi "Usuń" tutaj, pewnie coś z product.id?  -->
@@ -58,13 +58,13 @@
 <script>
 import { ContactService } from '@/services/ContactService';
 import Spinner from '@/components/Spinner.vue'
-import SingleProduct from './SingleProduct.vue'
+import ProductList from '@/views/ProductList.vue'
 // tutaj jest podkreślony błąd, ale jak usunę tę linijkę to produkty przestają działać?
 
 
 export default {
     name: "ProductManager",
-    components: { Spinner, SingleProduct },
+    components: { Spinner, ProductList },
     data: function() {
         return {
             loading: false,
