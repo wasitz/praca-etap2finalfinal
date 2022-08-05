@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6" v-for="product of products" :key="product">
 
-                <SingleProduct :product=product />
+                <SingleProduct @updateList="getProductList()" :product=product />
             </div>
 
         </div>
@@ -14,17 +14,21 @@
 <script>
 import { ContactService } from '@/services/ContactService';
 import SingleProduct from './SingleProduct.vue';
+import loginManager from '../mixins/LoginManager.js'
 
 export default {
     name: "ProductList",
     components: { SingleProduct },
-    data: function() {        
+    mixins: [ loginManager ],
+    data: function() {
         return {
             products: [],
         }
 
     },
     created: async function () {
+        this.logoutNotLogged ();
+
         try {
             this.loading = true;
             let response = await ContactService.getAllProducts();
@@ -56,6 +60,15 @@ export default {
                 this.errorMessage = error;
                 this.loading = false;
             }
+
+        },
+        async getProductList () {
+            this.loading = true;
+            let response = await ContactService.getAllProducts();
+            this.products = response.data;
+            this.loading = false
+
+
         }
 
         }

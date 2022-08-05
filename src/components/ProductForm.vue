@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submitCreate()">
+    <form @submit.prevent="sumbitForm()">
         <div class="col-md-4">
         <img :src="product.photo" alt="" class="product-img">
       </div>
@@ -15,7 +15,7 @@
 
 
           <div class="mb-2">
-            <input required type="text" v-model="product.code" class="form-control" placeholder="Kod produktu">
+            <input type="text" v-model="product.code" class="form-control" placeholder="Kod produktu">
           </div>
           <div class="mb-2">
             <input type="text" v-model="product.photo" class="form-control" placeholder="Zdjęcie URL">
@@ -30,18 +30,23 @@
             <input type="text" v-model="product.desc" class="form-control" placeholder="Opis">
           </div>
           <div class="mb-2">
-            <input type="submit" class="btn btn-success" value="Zaktualizuj">
+            <input type="submit" v-if="product.id" class="btn btn-success" value="Zaktualizuj">
+            <input type="submit" v-if="!product.id" class="btn btn-warning" value="Dodaj">
           </div>
 
     </form>
 </template>
 
 <script>
+import { ContactService } from '@/services/ContactService'
+
+
 export default {
     name: "ProductForm",
     data: function () {
         return {
             product: {
+                id: "",
                 name: "",
                 price: "",
                 code: "",
@@ -49,44 +54,46 @@ export default {
                 groupId: "",
                 desc: "",
             },
-            groups: []
+            groups: [],
+            type: 'add'
         };
     },
-    props: {
-         product: Object
+   props: {
+         productProps: Object
     },
     methods: {
-        submitCreate : async function () {
-        try {
-            let response = await ContactService.createProduct(this.product);
-            if(response) {
-            return this.$router.push('/products');
+        sumbitForm: async function () { 
+            if (this.validForm()) {
+                if (this.productProps !== undefined) {
+                        try {
+                        let response = await ContactService.updateProduct(this.product, this.product.id);
+                        if(response) {
+                            return this.$router.push('/products');
 
-            } else {
-            return this.$router.push('/products/add')
+                        } else {
+                            return this.$router.push('/products/edit/'+this.product.id);
+                        }
+                        }
+                        catch(error){
+                        console.log(error)
+                        }
+
+                } else {
+                    try {
+                        let response = await ContactService.createProduct(this.product);
+                        if(response) {
+                        return this.$router.push('/products');
+
+                        } else {
+                        return this.$router.push('/products/add')
+                        }
+                    }
+                    catch(error){
+                        console.log(error)
+                    }
+                }
             }
-        }
-        catch(error){
-            console.log(error)
-        }
-
         },
-            updateSubmit: async function () {
-      if (this.validForm()) {
-        try {
-          let response = await ContactService.updateProduct(this.product, this.productId);
-          if(response) {
-            return this.$router.push('/products');
-
-          } else {
-            return this.$router.push('/products/edit/${this.productId}');
-          }
-        }
-        catch(error){
-          console.log(error)
-        }
-      }
-    },
     validForm() {
       let formIsValid = true;
 
@@ -141,15 +148,21 @@ export default {
         }
     },
     watch: {
-    product: {
-      handler() {
-        this.validForm()
-      },
-     deep: true
-
-
-    },
-
+        product: {
+            handler() {
+                this.validForm()
+            },
+            deep: true
+        },
+        productProps: {
+            handler() {
+                if (this.productProps !== undefined) {
+                    this.type = 'edit'
+                    this.product = this.productProps
+                }
+            },
+            deep: true
+        },
   }
 
 

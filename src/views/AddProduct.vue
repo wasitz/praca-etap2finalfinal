@@ -11,7 +11,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-12">
-        <ProductForm :product=product />
+        <ProductForm />
         
       </div>
     </div>
@@ -20,15 +20,22 @@
 
 <script>
 import ProductForm from '@/components/ProductForm.vue';
+import loginManager from '@/mixins/LoginManager';
+
 export default {
     name: "AddProduct",
     components: { ProductForm },
+    mixins: [ loginManager ],
     data() {
         return {
             product: {},
 
         };
     },
+
+    created: async function () {
+        this.logoutNotLogged ();
+    }
 }
 
 </script>

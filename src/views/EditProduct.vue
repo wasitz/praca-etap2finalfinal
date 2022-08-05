@@ -11,7 +11,7 @@
     <div class="row align-items-center">
       <div class="col-12">
 
-        <ProductForm :product=product />
+        <ProductForm :productProps=product />
       </div>
 
     </div>
@@ -21,8 +21,12 @@
 <script>
 import { ContactService } from '@/services/ContactService'
 import ProductForm from '@/components/ProductForm.vue';
+import loginManager from '@/mixins/LoginManager';
+
 export default {
     name: "EditProduct",
+    components: { ProductForm },
+    mixins: [ loginManager ],
     data() {
         return {
             productId: this.$route.params.productId,
@@ -33,6 +37,7 @@ export default {
         };
     },
     created: async function () {
+       this.logoutNotLogged ();
         try {
             this.loading = true;
             let response = await ContactService.getProduct(this.productId);
@@ -47,7 +52,6 @@ export default {
         }
     },
     methods: {},
-    components: { ProductForm }
 }
 </script>
 

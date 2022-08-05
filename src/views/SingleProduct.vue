@@ -29,13 +29,16 @@
 
 <script>
 import { ContactService } from '@/services/ContactService';
+import loginManager from '@/mixins/LoginManager';
+
   
 export default {
-        data: function() {
+    data: function() {
         return {
         }
 
     },
+    mixins: [ loginManager ],
     props: {
          product: Object
     },
@@ -46,8 +49,8 @@ export default {
                 this.loading = true;
                 let response = await ContactService.deleteProduct(productId);
                 if (response) {
-                  let response = await ContactService.getAllProducts(); // odswiezanie danych
-                  this.products = response.data;
+                //   let response = await ContactService.getAllProducts(); odswiezanie danych
+                //   this.products = response.data;
                   this.loading = false;
                 }
 
@@ -57,9 +60,15 @@ export default {
                 this.errorMessage = error;
                 this.loading = false;
             }
-        }
+
+            this.$emit('updateList')
 
         }
+
+        },
+        created: async function () {
+            this.logoutNotLogged ();
+    }
     }
     </script>
     

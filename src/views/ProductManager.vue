@@ -59,12 +59,14 @@
 import { ContactService } from '@/services/ContactService';
 import Spinner from '@/components/Spinner.vue'
 import ProductList from '@/views/ProductList.vue'
+import loginManager from '@/mixins/LoginManager';
 // tutaj jest podkreślony błąd, ale jak usunę tę linijkę to produkty przestają działać?
 
 
 export default {
     name: "ProductManager",
     components: { Spinner, ProductList },
+    mixins: [ loginManager ],
     data: function() {
         return {
             loading: false,
@@ -74,6 +76,9 @@ export default {
 
     },
     created: async function () {
+        console.log(this.checkLoggedUser ());
+        this.logoutNotLogged ();
+
         try {
             this.loading = true;
             let response = await ContactService.getAllProducts();
@@ -86,6 +91,7 @@ export default {
             this.loading = false;
 
         }
+
 
     },
     methods: {

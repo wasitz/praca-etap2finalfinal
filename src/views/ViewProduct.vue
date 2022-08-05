@@ -56,10 +56,13 @@
 <script>
 import { ContactService } from '@/services/ContactService'
 import Spinner from '@/components/Spinner.vue'
+import loginManager from '@/mixins/LoginManager';
+
 
 export default {
   name: "ViewProduct",
   components: { Spinner },
+  mixins: [ loginManager ],
   data() {
     return {
       productId: this.$route.params.productId,
@@ -70,6 +73,7 @@ export default {
     }
   },
   created: async function () {
+        this.logoutNotLogged ();
     try {
       this.loading = true;
       let response = await ContactService.getProduct(this.productId);

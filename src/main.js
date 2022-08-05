@@ -14,4 +14,3 @@ import "./styles.css"
 
 createApp(App).use(store).use(router).mount('#app');
 createApp(App).use(VueCookies);
-

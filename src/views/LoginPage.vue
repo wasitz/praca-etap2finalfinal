@@ -7,8 +7,8 @@
         <h1 class="h3 mb-3 fw-normal">Logowanie</h1>
 
         <div class="form-floating">
-          <input type="email" v-model="email" class="form-control" id="floatingInput" required>
-          <label for="floatingInput" required>Email</label>
+          <input type="login" v-model="login" class="form-control" id="floatingInput" required>
+          <label for="floatingInput" required>Login</label>
           
         </div>
         <div class="form-floating">
@@ -17,7 +17,7 @@
         </div>
         <button @click="checkPassword()" class="btn btn-primary">Zaloguj się Button</button>
       </form>
-          email: a@a, hasło: aaa
+          login: aaa, hasło: aaa lub sss/sss
 
     </main>
   </div>
@@ -25,15 +25,17 @@
 </template>
 
 <script>
-
 import router from "../router"    
-import axios from "axios"    
+import axios from "axios"   
+import loginManager from '../mixins/LoginManager.js'
+
 
     export default {    
         name: "Login",
+        mixins: [ loginManager ],
         data() {
           return {
-            email: "",
+            login: "",
             password: "",
             loggedIn: false,
   
@@ -41,15 +43,18 @@ import axios from "axios"
         },
         methods: {
           checkPassword: function () {
-            if (this.password === 'aaa' && this.email === 'a@a'){
-              this.loggedIn = true;
-              console.log('loggedIn');
-              
-            } if (this.loggedIn) {
+            if (this.checkUserPassword(this.login, this.password)) {
+              this.logUser (this.login);
               this.$router.push('/products');
+
             } else {
               alert('Błąd logowania');
             }
+          },
+          computed: {
+            userIsLogged() {
+            }
+
           }
     }
     }
